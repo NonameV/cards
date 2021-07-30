@@ -1,13 +1,18 @@
-import Cart from "./components/carts/Cart";
+import { useState } from "react";
+import CartList from "./components/carts/CartList";
+import Form from "./components/Form/Form";
 import "./App.css";
-import { data } from "./data";
 
 function App() {
+  const [items, setItems] = useState([]);
+
+  const addItem = async (userName) => {
+    console.log(userName);
+  };
   return (
     <>
-      {data.map((e) => (
-        <Cart key={e.id} name={e.name} login={e.login} img={e.avatarUrl} />
-      ))}
+      <Form addItem={addItem} />
+      <CartList data={items} />
     </>
   );
 }
