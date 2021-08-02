@@ -1,6 +1,7 @@
 import { useState, useCallback } from "react";
 import CartList from "./components/carts/CartList";
 import Form from "./components/Form/Form";
+import AppStateContext from "./contexts/AppContext";
 import "./App.css";
 import { sleep, getUsers } from "./utils.js";
 
@@ -37,7 +38,9 @@ function App() {
   return (
     <div className="conatainer">
       <Form isDisabled={status === "pending"} addItem={addItem} error={error} />
-      <CartList data={items} deleteUser={deleteUser} />
+      <AppStateContext.Provider value={{ deleteUser }}>
+        <CartList data={items} />
+      </AppStateContext.Provider>
     </div>
   );
 }

@@ -11,7 +11,6 @@ const CartList = ({ data, deleteUser }) => {
           name={e.name}
           login={e.login}
           avatar_url={e.avatar_url}
-          deleteUser={deleteUser}
         />
       ))}
     </>

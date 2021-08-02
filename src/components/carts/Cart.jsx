@@ -1,20 +1,24 @@
 import React, { memo } from "react";
 import PropTypes from "prop-types";
+import AppStateContext from "../../contexts/AppContext";
 
-const Cart = ({ id, name, login, avatar_url, deleteUser }) => {
-  console.log("render");
+const Cart = ({ id, name, login, avatar_url }) => {
   return (
-    <div className="card" style={{ width: "30rem" }}>
-      <div className="card-body">
-        <img src={avatar_url} alt={name} className="card-img-top" />
-        <h3 className="card-text">{name}</h3>
-        <p>{login}</p>
+    <AppStateContext.Consumer>
+      {({ deleteUser }) => (
+        <div className="card" style={{ width: "30rem" }}>
+          <div className="card-body">
+            <img src={avatar_url} alt={name} className="card-img-top" />
+            <h3 className="card-text">{name}</h3>
+            <p>{login}</p>
 
-        <button onClick={() => deleteUser(id)} className="btn btn-danger">
-          Delete user
-        </button>
-      </div>
-    </div>
+            <button onClick={() => deleteUser(id)} className="btn btn-danger">
+              Delete user
+            </button>
+          </div>
+        </div>
+      )}
+    </AppStateContext.Consumer>
   );
 };
 
