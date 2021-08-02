@@ -1,15 +1,17 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const Cart = ({ id, name, login, img }) => {
+const Cart = ({ id, name, login, avatar_url, deleteUser }) => {
   return (
     <div className="card" style={{ width: "30rem" }}>
       <div className="card-body">
-        <img src={img} alt={name} className="card-img-top" />
+        <img src={avatar_url} alt={name} className="card-img-top" />
         <h3 className="card-text">{name}</h3>
         <p>{login}</p>
 
-        <button className="btn btn-danger">Delete user</button>
+        <button onClick={() => deleteUser(id)} className="btn btn-danger">
+          Delete user
+        </button>
       </div>
     </div>
   );

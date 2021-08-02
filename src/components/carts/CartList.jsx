@@ -2,13 +2,19 @@ import React from "react";
 import PropTypes from "prop-types";
 import Cart from "./Cart";
 
-const CartList = ({ data }) => {
+const CartList = ({ data, deleteUser }) => {
   return (
-    <div className="container">
+    <>
       {data.map((e) => (
-        <Cart key={e.id} name={e.name} login={e.login} img={e.avatarUrl} />
+        <Cart
+          id={e.id}
+          name={e.name}
+          login={e.login}
+          avatar_url={e.avatar_url}
+          deleteUser={deleteUser}
+        />
       ))}
-    </div>
+    </>
   );
 };
 
