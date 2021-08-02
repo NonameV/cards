@@ -1,7 +1,8 @@
-import React from "react";
+import React, { memo } from "react";
 import PropTypes from "prop-types";
 
 const Cart = ({ id, name, login, avatar_url, deleteUser }) => {
+  console.log("render");
   return (
     <div className="card" style={{ width: "30rem" }}>
       <div className="card-body">
@@ -29,4 +30,4 @@ Cart.propsTypes = {
   img: PropTypes.string.isRequired,
 };
 
-export default Cart;
+export default memo(Cart);

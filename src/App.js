@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import CartList from "./components/carts/CartList";
 import Form from "./components/Form/Form";
 import "./App.css";
@@ -14,7 +14,9 @@ function App() {
       setError(`User ${userName} already here`);
       return;
     }
+    setError("");
     setStatus("pending");
+    await sleep();
     getUsers(userName).then(
       (item) => {
         setError("");
@@ -28,10 +30,9 @@ function App() {
     );
   };
 
-  const deleteUser = (id) => {
-    debugger;
+  const deleteUser = useCallback((id) => {
     setItems((items) => items.filter((e) => e.id != id));
-  };
+  }, []);
 
   return (
     <div className="conatainer">

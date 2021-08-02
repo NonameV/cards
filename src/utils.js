@@ -7,7 +7,6 @@ export async function sleep(ms = 2000) {
 }
 
 export async function getUsers(userName) {
-  //await sleep();
   const r = await fetch(URL + userName);
   if (!r.ok) {
     throw Error("bad response");
