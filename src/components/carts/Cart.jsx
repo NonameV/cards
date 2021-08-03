@@ -1,9 +1,9 @@
 import React, { memo, useContext } from "react";
 import PropTypes from "prop-types";
-import AppStateContext from "../../contexts/AppContext";
+import { useDeleteUser } from "../../contexts/AppContext";
 
 const Cart = ({ id, name, login, avatar_url }) => {
-  const { deleteUser } = useContext(AppStateContext); //вытаскивание данных с контекста через хук
+  const deleteUser = useDeleteUser();
   return (
     <div className="card" style={{ width: "30rem" }}>
       <div className="card-body">

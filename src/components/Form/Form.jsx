@@ -1,13 +1,18 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
+import { useAddItem } from "../../contexts/AppContext";
 
-const Form = ({ addItem, isDisabled, error }) => {
+const Form = () => {
   const [val, setVal] = useState("");
+  const { state, addItem } = useAddItem();
+  const isDisabled = state.status === "pending";
+  const { error } = state;
   const handleSubmit = (e) => {
     e.preventDefault();
     addItem(val);
     setVal("");
   };
+
   return (
     <form onSubmit={(e) => handleSubmit(e)}>
       {isDisabled ? (

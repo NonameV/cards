@@ -1,11 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Cart from "./Cart";
+import { useAppContext } from "../../contexts/AppContext";
 
-const CartList = ({ data, deleteUser }) => {
+const CartList = () => {
+  const state = useAppContext();
   return (
     <>
-      {data.map((e) => (
+      {state.items.map((e) => (
         <Cart
           id={e.id}
           name={e.name}
