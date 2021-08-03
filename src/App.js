@@ -1,10 +1,12 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useMemo } from "react";
 import CartList from "./components/carts/CartList";
 import Form from "./components/Form/Form";
 import AppStateContext from "./contexts/AppContext";
 import "./App.css";
 import { sleep, getUsers } from "./utils.js";
 
+// useCallback -- мемоизирует функцию
+// useMemo -- мемоизирует величину
 function App() {
   const [items, setItems] = useState([]);
   const [status, setStatus] = useState("idle");
@@ -32,13 +34,14 @@ function App() {
   };
 
   const deleteUser = useCallback((id) => {
-    setItems((items) => items.filter((e) => e.id != id));
+    setItems((items) => items.filter((e) => e.id !== id));
   }, []);
 
+  const value = useMemo(() => ({ deleteUser }), [deleteUser]);
   return (
     <div className="conatainer">
       <Form isDisabled={status === "pending"} addItem={addItem} error={error} />
-      <AppStateContext.Provider value={{ deleteUser }}>
+      <AppStateContext.Provider value={value}>
         <CartList data={items} />
       </AppStateContext.Provider>
     </div>

@@ -1,24 +1,21 @@
-import React, { memo } from "react";
+import React, { memo, useContext } from "react";
 import PropTypes from "prop-types";
 import AppStateContext from "../../contexts/AppContext";
 
 const Cart = ({ id, name, login, avatar_url }) => {
+  const { deleteUser } = useContext(AppStateContext); //вытаскивание данных с контекста через хук
   return (
-    <AppStateContext.Consumer>
-      {({ deleteUser }) => (
-        <div className="card" style={{ width: "30rem" }}>
-          <div className="card-body">
-            <img src={avatar_url} alt={name} className="card-img-top" />
-            <h3 className="card-text">{name}</h3>
-            <p>{login}</p>
+    <div className="card" style={{ width: "30rem" }}>
+      <div className="card-body">
+        <img src={avatar_url} alt={name} className="card-img-top" />
+        <h3 className="card-text">{name}</h3>
+        <p>{login}</p>
 
-            <button onClick={() => deleteUser(id)} className="btn btn-danger">
-              Delete user
-            </button>
-          </div>
-        </div>
-      )}
-    </AppStateContext.Consumer>
+        <button onClick={() => deleteUser(id)} className="btn btn-danger">
+          Delete user
+        </button>
+      </div>
+    </div>
   );
 };
 
